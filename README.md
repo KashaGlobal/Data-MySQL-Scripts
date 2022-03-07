@@ -1,6 +1,6 @@
 # Data-MySQL-Scripts
 ## REPO DESCRIPTION
-This is a Kasha repo.
+This is a Business Intelligence Repo that allows the team to standardize reporting byt committing code
 
 ### FOLDER DESCRIPTION
 1. **Dashboards** - this folder contains dashboard code
