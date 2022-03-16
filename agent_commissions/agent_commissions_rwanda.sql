@@ -27,11 +27,11 @@
 	FROM dwh_casedate_orders A	
 	left join KASHA_DWH.woocommerce_orders B 	on  B.order_id=A.order_id AND A.order_country = B.country collate utf8mb4_unicode_ci
     left join KASHA_DWH.new_tradegecko_orders C ON C.order_number=A.order_number
-	where left(C.ship_at,4) in ('2021')	
+	where left(C.ship_at,4) in ('2021', '2022')	
     and A.status  NOT REGEXP ('trash|cancel|duplicate|failed|refuse|refund|auto-draft|ghost|returned')
 	and A.order_country in ('kenya','rwanda')
     )
-	
+
     select b.agent_id as 'Agent ID', b.agent_location_name as Location,
     case when last_name is null then first_name else concat(first_name,' ',last_name) end as 'Agent Name', b.phone as 'Agent Phone', sum(a.closed_revenue) as 'Closed Revenue', 
     SUM(CASE WHEN  order_business_grouping = 'Agent_Delivered' THEN a.closed_revenue END) as 'Consumer Revenue', 
@@ -42,7 +42,7 @@
     from all_sales as a
     left join dwh_agent_data as b on b.agent_id = a.agent_customer_id
     where a.order_business_grouping in ("Agent_Delivered", "Agent_Delivered_Institutional", "Corporate_Institutional")
-    and left(a.case_date, 7) in ("2021-12")
+    and left(a.case_date, 7) in ("2022-03")
     and a.status in ("completed")
     and order_country = "rwanda"
     group by 1
