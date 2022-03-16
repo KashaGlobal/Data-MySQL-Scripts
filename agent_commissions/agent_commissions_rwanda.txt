@@ -35,7 +35,7 @@
     case when last_name is null then first_name else concat(first_name,' ',last_name) end as 'Agent Name', b.phone as 'Agent Phone', sum(a.closed_revenue) as 'Closed Revenue', 
     SUM(CASE WHEN  order_business_grouping = 'Agent_Delivered' THEN a.closed_revenue END) as 'Consumer Revenue', 
     SUM(CASE WHEN  order_business_grouping = 'Agent_Delivered_Institutional' THEN a.closed_revenue END) as 'Institutional Revenue', 
-    round((sum(a.closed_revenue)/count(a.order_id)), 2) as 'Average Basket Value', COUNT(distinct a.billing_phone) as 'Customers Served', count(distinct a.order_id) as 'Order Count',
+    round((sum(a.closed_revenue)/count(a.distinct order_id)), 2) as 'Average Basket Value', COUNT(distinct a.billing_phone) as 'Customers Served', count(distinct a.order_id) as 'Order Count',
     COUNT(case when order_business_grouping = 'Agent_Delivered' THEN a.order_id END) as 'Consumer Order',
     COUNT(case when order_business_grouping = 'Agent_Delivered_Institutional' THEN a.order_id END) as 'Institutional Order'
     from all_sales as a
