@@ -1,14 +1,6 @@
 #All sales Query	
-	with all_sales as (SELECT 	
-	A.case_date,
-	C.ship_at,
-    LEFT(B.created_at,10) as 'Order_creation_date',
-	A.order_country,	
-	A.order_id,	
-    A.order_number,
-	RIGHT(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(A.billing_phone,'+', ''),' ',''),'-',''),')','')), 9) as billing_phone,	
-	A.billing_name,	
-	A.order_business_grouping,	
+	with all_sales as (SELECT A.case_date, C.ship_at, LEFT(B.created_at,10) as 'Order_creation_date', A.order_country, A.order_id, A.order_number,
+	RIGHT(TRIM(REPLACE(REPLACE(REPLACE(REPLACE(A.billing_phone,'+', ''),' ',''),'-',''),')','')), 9) as billing_phone, A.billing_name, A.order_business_grouping,	
 	A.order_total,	
 	A.order_usd_total,	
 	A.order_business_program,	
@@ -31,6 +23,7 @@
     and A.status  NOT REGEXP ('trash|cancel|duplicate|failed|refuse|refund|auto-draft|ghost|returned')
 	and A.order_country in ('kenya','rwanda')
     )
+	
     select b.agent_id as 'Agent ID', b.agent_location_name as Location,
     case when last_name is null then first_name else concat(first_name,' ',last_name) end as 'Agent Name', b.phone as 'Agent Phone', sum(a.closed_revenue) as 'Closed Revenue', 
     SUM(CASE WHEN  order_business_grouping = 'Agent_Delivered' THEN a.closed_revenue END) as 'Consumer Revenue', 
