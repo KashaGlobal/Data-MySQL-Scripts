@@ -4,4 +4,4 @@ This is a Business Intelligence Repo that allows the team to standardize reporti
 
 ### FOLDER DESCRIPTION
 1. **Dashboards** - this folder contains dashboard code
-2. **Agents Commissions** - this folder contains *Kenya* and *Rwanda* commissions code
+2. **Agents Commissions** - this folder contains *Kenya* and *Rwanda* commissions code that generates both **agents total commissions** and **orders**
