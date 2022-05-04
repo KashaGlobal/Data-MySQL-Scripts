@@ -31,7 +31,7 @@
     round((sum(a.closed_revenue)/count(distinct a.order_id)), 2) as 'Average Basket Value', COUNT(distinct a.billing_phone) as 'Customers Served', a.processing_total as 'Processing Revenue'
     from all_sales as a
     left join dwh_agent_data as b on b.agent_id = a.agent_customer_id
-    where a.order_business_grouping in ("Agent_Delivered", "Agent_Delivered_Institutional", "Corporate_Institutional")
+    where a.order_business_grouping in ("Agent_Delivered", "Agent_Delivered_Institutional")
     and left(a.case_date, 7) in ("2021-12")
     and a.status in ("completed")
     and order_country = "kenya"
