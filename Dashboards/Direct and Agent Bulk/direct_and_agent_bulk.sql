@@ -47,7 +47,7 @@ with mashup as (select A.* ,Ax.New_Repeat ,left(case_date,7) as 'Created_Month',
     select *, STR_TO_DATE(due_date, '%Y-%m-%d') as due_dates, 
     case when A.name is null then G.product_name else A.name end as 'products_name',
     case when A.sales_agent is null then A.agent_name else F.sales_agent end as 'final_agent',
-    case when A.quantity is null then G.quantity else A.quantity end as 'total_quantity',
+    case when A.quantity is null then sum(G.quantity) else A.quantity end as 'total_quantity',
     case when A.total is null then F.total else A.total end as 'totals', H.partial, H.payment_status,
     case when A.date_paid is null then H.bulk_date_paid else A.date_paid end as 'new_date_paid'
     from mashup2 A
